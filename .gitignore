@@ -12,7 +12,7 @@
 !*.v
 !*.bd
 !*.edif
-!*.vs
+!*.sv
 #########
 #Project files
 #########
