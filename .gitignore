@@ -12,7 +12,7 @@
 !*.v
 !*.bd
 !*.edif
-!*.vs # Added from original
+!*.vs
 #########
 #Project files
 #########
