@@ -15,3 +15,6 @@ set_property IOSTANDARD LVCMOS33 [get_ports {E}]
 
 set_property PACKAGE_PIN U16 [get_ports {F}]
 set_property IOSTANDARD LVCMOS33 [get_ports {F}]
+
+set_property PACKAGE_PIN L1 [get_ports {G}]
+set_property IOSTANDARD LVCMOSS33 [get_ports {G}]

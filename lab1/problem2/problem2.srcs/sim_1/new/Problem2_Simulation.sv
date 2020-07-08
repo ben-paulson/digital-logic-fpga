@@ -2,11 +2,11 @@
 
 module Problem2_Simulation();
 
-logic sA, sB, sC, sD, sE, sF;
+logic sA, sB, sC, sD, sE, sF, sG;
     
     Problem2 UUT (
         .A(sA), .B(sB), .C(sC),
-        .D(sD), .E(sE), .F(sF));
+        .D(sD), .E(sE), .F(sF), .G(sG));
         
     initial begin
         // Same technique as in problem 1
