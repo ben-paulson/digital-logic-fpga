@@ -9,7 +9,7 @@ module Problem3(
     output F
     );
     
-    assign F = (~A & C & ~D & E) | (~A & ~B & ~C & D) | (~A & ~C & D & E) |
-                (A & ~B & ~C & E) | (A & B & C & E);
+    assign F = (~B & D & E) | (~A & C & ~D & E) | (~A & ~B & ~C & D) |
+                (~A & ~C & D & E) | (A & ~B & ~C & E) | (A & B & C & E);
     
 endmodule
