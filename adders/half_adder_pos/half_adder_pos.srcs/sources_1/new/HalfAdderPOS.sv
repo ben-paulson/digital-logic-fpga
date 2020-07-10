@@ -14,7 +14,7 @@ module HalfAdderPOS(
     assign CO_SOP = OP_A & OP_B;
     
     // POS equations
-    assign SUM_POS = (OP_A | ~OP_B) & (~OP_A | OP_B);
-    assign CO_POS = ~OP_A | ~OP_B;
+    assign SUM_POS = (OP_A | OP_B) & (~OP_A | ~OP_B);
+    assign CO_POS = (OP_A | OP_B) & (OP_A | ~OP_B) & (~OP_A | OP_B);
     
 endmodule
