@@ -10,6 +10,7 @@ module FullAdderSOP_Simulation();
         
     initial begin
     
+        // Loop through all combinations instead of writing one by one
         for (byte a = 0; a < 2; a++) begin
             for (byte b = 0; b < 2; b++) begin
                 for (byte cin = 0; cin < 2; cin++) begin
