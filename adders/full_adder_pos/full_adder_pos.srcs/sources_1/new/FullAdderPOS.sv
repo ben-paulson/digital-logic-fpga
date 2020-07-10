@@ -20,6 +20,6 @@ module FullAdderPOS(
     assign SUM_POS = (OP_A | OP_B | Cin) & (OP_A | ~OP_B | ~Cin) &
                      (~OP_A | OP_B | ~Cin) & (~OP_A | ~OP_B | Cin);
     assign CO_POS = (OP_A | OP_B | Cin) & (OP_A | OP_B | ~Cin) &
-                    (OP_A | ~OP_B | ~Cin) & (~OP_A | OP_B | Cin);
+                    (OP_A | ~OP_B | Cin) & (~OP_A | OP_B | Cin);
     
 endmodule
