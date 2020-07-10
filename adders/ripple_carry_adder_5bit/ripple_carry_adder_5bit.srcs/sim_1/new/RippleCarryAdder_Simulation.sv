@@ -22,42 +22,31 @@
 
 module RippleCarryAdder_Simulation();
 
-    reg [4:0] sA, sB, sSUM;
+    // 5-bit inputs and output (include [4:0])
+    logic [4:0] sA, sB, sSUM;
+    // 1-bit output
     logic sCO;
     
     RippleCarryAdder UUT(
         .A(sA), .B(sB), .SUM(sSUM), .CO(sCO));
         
+    // The number of bits in the adder
+    localparam bits = 5;
+    // Delay time - total runtime will be ((2 ** (2 * bits)) * delay) time units.
+    // 10240 ns in this case.
+    localparam delay = 10;
+        
     initial begin
-        // Use 10 for loops:
-        // 5 for 5 bits of input A
-        // 5 for 5 bits of input B
-        // Total simulation time will be 2^10 * 10ns
-        //
-        // With this many loops it starts to look messy
-        // Maybe there is a better way?
-        for (byte a4 = 0; a4 < 2; a4++) begin
-            for (byte a3 = 0; a3 < 2; a3++) begin
-                for (byte a2 = 0; a2 < 2; a2++) begin
-                    for (byte a1 = 0; a1 < 2; a1++) begin
-                        for (byte a0 = 0; a0 < 2; a0++) begin
-                            for (byte b4 = 0; b4 < 2; b4++) begin
-                                for (byte b3 = 0; b3 < 2; b3++) begin
-                                    for (byte b2 = 0; b2 < 2; b2++) begin
-                                        for (byte b1 = 0; b1 < 2; b1++) begin
-                                            for (byte b0 = 0; b0 < 2; b0++) begin
-                                                // Set all variables
-                                                sA[0] = a0; sA[1] = a1; sA[2] = a2; sA[3] = a3; sA[4] = a4;
-                                                sB[0] = b0; sB[1] = b1; sB[2] = b2; sB[3] = b3; sB[4] = b4;
-                                                #10; // delay
-                                            end
-                                        end
-                                    end
-                                end
-                            end
-                        end
-                    end
-                end
+        
+        // Use only 2 for loops instead of 10 (1 for each bit of A and B)
+        // by assigning the entire variable at one time in this way.
+        // It works the same as 10 loops but is much more readable
+        // and less messy
+        for (byte a = 0; a < 2 ** bits; a++) begin
+            for (byte b = 0; b < 2 ** bits; b++) begin
+                sA = a[4:0];
+                sB = b[4:0];
+                #delay;
             end
         end
     
