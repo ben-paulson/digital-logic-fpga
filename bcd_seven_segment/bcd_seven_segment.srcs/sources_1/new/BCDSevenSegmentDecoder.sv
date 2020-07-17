@@ -4,7 +4,7 @@
 * bcd is the 4-bit BCD input
 * seg is each LED in the 7-segment display
 * where the MSB is segment A and LSB is
-* segment G
+* the decimal point
 */
 module BCDSevenSegmentDecoder(
     input [3:0] enable,
@@ -35,6 +35,6 @@ module BCDSevenSegmentDecoder(
     assign seg[1] = ~((~bcd[1] & (bcd[3] ^ bcd[2])) | (~bcd[3] & ~bcd[2] & bcd[1]) |
                     (~bcd[3] & bcd[1] & ~bcd[0]));
     // Decimal point
-    assign seg[0] = 0;
+    assign seg[0] = 1'b1; // Always keep it off, it is not needed
     
 endmodule
