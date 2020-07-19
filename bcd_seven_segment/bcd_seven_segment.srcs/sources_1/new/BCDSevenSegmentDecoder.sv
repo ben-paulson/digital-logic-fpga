@@ -9,32 +9,29 @@
 module BCDSevenSegmentDecoder(
     input [3:0] enable,
     input [3:0] bcd,
-    output [7:0] seg,
+    output reg [7:0] seg,
     output [3:0] an
     );
     
-    // Anodes - which segment sections to use
+    // 0 will turn it on, 1 off
     assign an = ~enable;
-    // Segment A
-    assign seg[7] = ~((~bcd[3] & bcd[1]) | (bcd[3] & ~bcd[2] & ~bcd[1]) |
-                    (~bcd[2] & ~bcd[1] & ~bcd[0]) | (~bcd[3] & bcd[2] & bcd[0]));
-    // Segment B
-    assign seg[6] = ~((~bcd[3] & ~bcd[2]) | (~bcd[2] & ~bcd[1]) |
-                    (~bcd[3] & ~(bcd[1] ^ bcd[0])));
-    // Segment C
-    assign seg[5] = ~((~bcd[2] & ~bcd[1]) | (~bcd[3] & bcd[2]) | (~bcd[3] & bcd[0]));
-    // Segment D
-    assign seg[4] = ~((~bcd[2] & ~bcd[1] & ~bcd[0]) | (~bcd[3] & ~bcd[2] & bcd[1]) |
-                    (~bcd[3] & bcd[1] & ~bcd[0]) | (~bcd[3] & bcd[2] & ~bcd[1] & bcd[0]));
-    // Segment E
-    assign seg[3] = ~((~bcd[2] & ~bcd[1] & ~bcd[0]) | (~bcd[3] & bcd[1] & ~bcd[0]));
-    // Segment F
-    assign seg[2] = ~((~bcd[1] & (bcd[3] ^ bcd[2])) | (~bcd[3] & ~bcd[1] & ~bcd[0]) |
-                    (~bcd[3] & bcd[2] & ~bcd[0]));
-    // Segment G
-    assign seg[1] = ~((~bcd[1] & (bcd[3] ^ bcd[2])) | (~bcd[3] & ~bcd[2] & bcd[1]) |
-                    (~bcd[3] & bcd[1] & ~bcd[0]));
-    // Decimal point
-    assign seg[0] = 1'b1; // Always keep it off, it is not needed
+    
+    /* Always be updating the value of seg
+     * Using a case statement (decoder) instead of equations
+    */
+    always_ff @(bcd)
+        case (bcd)
+            0: seg <= 8'b00000011;
+            1: seg <= 8'b10011111;
+            2: seg <= 8'b00100101;
+            3: seg <= 8'b00001101;
+            4: seg <= 8'b10011001;
+            5: seg <= 8'b01001001;
+            6: seg <= 8'b01000001;
+            7: seg <= 8'b00011111;
+            8: seg <= 8'b00000001;
+            9: seg <= 8'b00011001;
+            default: seg <= 8'b11111111; // Default to turn it off
+        endcase
     
 endmodule
