@@ -22,20 +22,19 @@ module BCDSevenSegmentDecoder_AlwaysComb(
      * Using always_comb instead of always_ff allows 
      * for continuous assignment without a changing bcd condition
      * (which always_ff required)
+     * Using if statement instead of case also works
     */
     always_comb
-        case (bcd)
-            0: seg <= 8'b00000011;
-            1: seg <= 8'b10011111;
-            2: seg <= 8'b00100101;
-            3: seg <= 8'b00001101;
-            4: seg <= 8'b10011001;
-            5: seg <= 8'b01001001;
-            6: seg <= 8'b01000001;
-            7: seg <= 8'b00011111;
-            8: seg <= 8'b00000001;
-            9: seg <= 8'b00011001;
-            default: seg <= 8'b11111111; // Default to turn it off
-        endcase
+        if (bcd == 0) seg <= 8'b00000011;
+        else if (bcd == 1) seg <= 8'b10011111;
+        else if (bcd == 2) seg <= 8'b00100101;
+        else if (bcd == 3) seg <= 8'b00001101;
+        else if (bcd == 4) seg <= 8'b10011001;
+        else if (bcd == 5) seg <= 8'b01001001;
+        else if (bcd == 6) seg <= 8'b01000001;
+        else if (bcd == 7) seg <= 8'b00011111;
+        else if (bcd == 8) seg <= 8'b00000001;
+        else if (bcd == 9) seg <= 8'b00011001;
+        else seg <= 8'b11111111;
     
 endmodule
