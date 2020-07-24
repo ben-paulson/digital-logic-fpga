@@ -15,5 +15,6 @@ module Calculator(
     
     RippleCarryAdder rca(A, B, sub, sum, 0);
     ValidityCheck vchk(A[4], B[4], sum[4], valid);
+    SevenSegmentDecoder ssd(sum, seg, an);
     
 endmodule
