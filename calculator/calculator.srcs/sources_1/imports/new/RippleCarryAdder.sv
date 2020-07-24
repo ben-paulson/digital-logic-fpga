@@ -3,13 +3,14 @@
 module RippleCarryAdder(
     input [4:0] A,
     input reg [4:0] B,
+    input sub,
     output [4:0] SUM,
     output CO
     );
     
     // Make 
     always_comb begin
-        if (B[4] == 1) B <= ~B + 1;
+        if (sub == 1) B <= ~B + 1;
     end
     
     // Make a wire variable to connect the carry out
