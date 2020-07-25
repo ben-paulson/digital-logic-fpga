@@ -9,7 +9,7 @@ module SevenSegmentDecoder(
     assign an = 4'b0000;
     
     always_ff @(sum)
-        case (sum)
+        case (sum[3:0]) // Only show magnitude, not negative
             0: seg <= 7'b0000001;
             1: seg <= 7'b1001111;
             2: seg <= 7'b0010010;

@@ -1,5 +1,19 @@
 `timescale 1ns / 1ps
 
+/*
+* INPUTS:
+* A - The first input to the calculator
+* B - The second input to the calculator
+* sub - Whether the operation should be subtraction
+*       or not (Addition by default).
+* 
+* OUTPUTS:
+* neg - Whether the result is negative or not (1 if neg, 0 if not)
+* valid - Whether the result is valid (1 if valid, 0 if not)
+* twoc - The two's complement of the result, displayed on LEDs
+* seg - The 7 segment display cathodes
+* an - The 7-segment display anodes
+*/
 module Calculator(
     input [4:0] A,
     input [4:0] B,
@@ -11,24 +25,39 @@ module Calculator(
     output [3:0] an
     );
     
-    logic [4:0] sum;
-    logic [4:0] B_INV;
-    logic [4:0] B_use;
+    /*
+    * B_neg - The negative version of B
+    * B_use - The version of B that is used -
+    *         B if adding, B_INV if subtracting
+    */          
+    logic [4:0] B_neg, B_use;
     
     // Add 1 to the inverse of B to get 2's comp of B
-    RippleCarryAdder(~B, 1, B_INV, 0);
+    RippleCarryAdder(.A(~B), .B(1), .SUM(B_neg));
     
+    /*
+    * Choose which version of B to use for the calculation
+    * Use B if adding (B is positive)
+    * Use B_neg if subtracting (B_neg is negative)
+    */
     always_ff @(sub)
         case (sub)
             0: B_use <= B;
-            1: B_use <= B_INV;
+            1: B_use <= B_neg;
         endcase
     
-    RippleCarryAdder rca(A, B_use, sum, 0);
-    ValidityCheck vchk(A[4], B_use[4], sum[4], valid);
-    SevenSegmentDecoder ssd(sum, seg, an);
+    // Perform the operation
+    RippleCarryAdder rca(.A(A), .B(B_use), .SUM(twoc));
+    /* 
+    * Check for validity by sending sign bits of inputs and output
+    * to ValidityCheck module
+    */
+    ValidityCheck vchk(.sign_a(A[4]), .sign_b(B_use[4]),
+                       .sign_result(twoc[4]), .valid(valid));
+    // Display the result on the 7-segment display
+    SevenSegmentDecoder ssd(.sum(twoc), .seg(seg), .an(an));
     
-    assign twoc = B_INV;
-    assign neg = B_use[4];
+    // Light an LED if the result is negative
+    assign neg = twoc[4];
     
 endmodule
