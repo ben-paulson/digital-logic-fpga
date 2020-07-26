@@ -12,7 +12,7 @@
 module SevenSegmentDecoder # (parameter REFRESH_RATE = 125)(
     input [4:0] sum,
     input clk,
-    output reg [6:0] seg,
+    output reg [7:0] seg,
     output reg [3:0] an
     );
     
@@ -51,40 +51,43 @@ module SevenSegmentDecoder # (parameter REFRESH_RATE = 125)(
         if (sel == 2'b00) begin
             // First segment, display nothing
             an <= 4'b0111;
-            seg <= 7'b1111111;
+            seg <= 8'b11111111;
         end
         else if (sel == 2'b01) begin
             // Second segment, display nothing
             an <= 4'b1011;
-            seg <= 7'b1111111;
+            seg <= 8'b11111111;
         end
         else if (sel == 2'b10) begin
             // Third segment, display negative sign if negative, else nothing
             an <= 4'b1101;
-            if (sum[4] == 0) seg <= 7'b1111111;
-            else seg <= 7'b1111110;
+            case (sum[4])
+                0: seg <= 8'b11111111;
+                1: seg <= 8'b11111101;
+                default: seg <= 8'b11111111;
+            endcase
         end
         else begin
             // Fourth segment, display sum
             an <= 4'b1110;
             case (disp) // Make sure it is the positive form
-                0: seg <= 7'b0000001;
-                1: seg <= 7'b1001111;
-                2: seg <= 7'b0010010;
-                3: seg <= 7'b0000110;
-                4: seg <= 7'b1001100;
-                5: seg <= 7'b0100100;
-                6: seg <= 7'b0100000;
-                7: seg <= 7'b0001111;
-                8: seg <= 7'b0000000;
-                9: seg <= 7'b0001100;
-                10: seg <= 7'b0001000;
-                11: seg <= 7'b1100000;
-                12: seg <= 7'b0110001;
-                13: seg <= 7'b1000010;
-                14: seg <= 7'b0110000;
-                15: seg <= 7'b0111000;
-                default: seg <= 7'b1111111; // Default to turn it off
+                0: seg <= 8'b00000011;
+                1: seg <= 8'b10011111;
+                2: seg <= 8'b00100101;
+                3: seg <= 8'b00001101;
+                4: seg <= 8'b10011001;
+                5: seg <= 8'b01001001;
+                6: seg <= 8'b01000001;
+                7: seg <= 8'b00011111;
+                8: seg <= 8'b00000001;
+                9: seg <= 8'b00011001;
+                10: seg <= 8'b00010001;
+                11: seg <= 8'b11000001;
+                12: seg <= 8'b01100011;
+                13: seg <= 8'b10000101;
+                14: seg <= 8'b01100001;
+                15: seg <= 8'b01110001;
+                default: seg <= 8'b11111111; // Default to turn it off
             endcase
         end
     end
