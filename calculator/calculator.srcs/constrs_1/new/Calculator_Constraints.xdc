@@ -44,6 +44,10 @@ set_property IOSTANDARD LVCMOS33 [get_ports {neg}]
 set_property PACKAGE_PIN L1 [get_ports {valid}]
 set_property IOSTANDARD LVCMOS33 [get_ports {valid}]
 
+# Map 'clk' input to 100MHz clock
+set_property PACKAGE_PIN W5 [get_ports {clk}]
+set_property IOSTANDARD LVCMOS33 [get_ports {clk}]
+
 # Map output twoc to LEDs 4-0
 
 set_property PACKAGE_PIN W18 [get_ports {twoc[4]}]

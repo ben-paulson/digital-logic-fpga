@@ -58,6 +58,13 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
+      <File Path="$PSRCDIR/sources_1/new/ClockDivider.sv">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/imports/new/FullAdderSOP.sv">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../adders/ripple_carry_adder_5bit/ripple_carry_adder_5bit.srcs/sources_1/imports/adders/full_adder_sop/full_adder_sop.srcs/sources_1/new/FullAdderSOP.sv"/>

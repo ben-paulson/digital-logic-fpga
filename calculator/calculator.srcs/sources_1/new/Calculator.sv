@@ -18,6 +18,7 @@ module Calculator(
     input [4:0] A,
     input [4:0] B,
     input sub,
+    input clk,
     output neg,
     output valid,
     output [4:0] twoc,
@@ -28,14 +29,8 @@ module Calculator(
     /*
     * B_use - The version of B that is used -
     *         B if adding, 2's comp if subtracting
-    * twoc_disp - The version of the sum that is displayed -
-                  twoc if positive, 2's comp if negative
     */          
-    logic [4:0] B_use, twoc_disp;
-    
-    // Add 1 to the inverse of B to get 2's comp of B
-    RippleCarryAdder inv(.A(~B), .B(1), .SUM(B_neg));
-    
+    logic [4:0] B_use;
     /*
     * Choose which version of B to use for the calculation
     * Use B if adding (B is positive)
@@ -45,25 +40,15 @@ module Calculator(
     
     // Perform the operation
     RippleCarryAdder rca(.A(A), .B(B_use), .SUM(twoc));
-    // Get the two's complement of the result
-    RippleCarryAdder neg_sum(.A(~twoc), .B(1), .SUM(twoc_neg));
+    
     /* 
     * Check for validity by sending sign bits of inputs and output
     * to ValidityCheck module
     */
     ValidityCheck vchk(.sign_a(A[4]), .sign_b(B_use[4]),
-                       .sign_result(twoc[4]), .valid(valid));
-    
-    /*
-    * Choose which version of the sum to use for displaying.
-    * Since we want the magnitude in hex, the number has to be
-    * positive, so if it is negative, the display module
-    * will use two's complement of the sum to display on the 7-segment
-    */             
-    Mux choose_disp(.sign(twoc[4]), .pos(twoc), .out(twoc_disp));
-                       
-    // Display the result on the 7-segment display
-    SevenSegmentDecoder ssd(.sum(twoc_disp), .seg(seg), .an(an));
+                       .sign_result(twoc[4]), .valid(valid));                       
+    // Display the result on the 7-segment display w/ 100Hz refresh rate
+    SevenSegmentDecoder # (100) ssd(.sum(twoc), .clk(clk), .seg(seg), .an(an));
     
     // Light an LED if the result is negative
     assign neg = twoc[4];
