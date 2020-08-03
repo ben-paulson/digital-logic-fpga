@@ -1,5 +1,9 @@
 `timescale 1ns / 1ps
 
+/*
+* A 4-bit register with synchronous
+* set, reset, and latch operations
+*/
 module Register(
     input [3:0] data,
     input clk,
@@ -12,15 +16,16 @@ module Register(
     logic [3:0] contents;
     initial contents = 4'b0000;
     
-    // Either set, reset, or latch data on rising edge of clock
-    always_ff @(posedge clk) begin
-        if (set == 0 && reset == 1)
-            contents <= 4'b0000;
-        else if (set == 1 && reset == 0)
-            contents <= 4'b1111;
-        else if (set == 0 && reset == 0)
-            contents <= data;
-    end
+    // Use a D flip flop for each bit in the register
+    DataFlipFlop bit0(.clk(clk), .new_data(data[0]), .set(set),
+                      .reset(reset), .latched_data(contents[0]));
+    DataFlipFlop bit1(.clk(clk), .new_data(data[1]), .set(set),
+                      .reset(reset), .latched_data(contents[1]));
+    DataFlipFlop bit2(.clk(clk), .new_data(data[2]), .set(set),
+                      .reset(reset), .latched_data(contents[2]));
+    DataFlipFlop bit3(.clk(clk), .new_data(data[3]), .set(set),
+                      .reset(reset), .latched_data(contents[3]));
+   
     // Display the contents of the register on the 7-segment display
     SevenSegmentDecoder display(.disp(contents), .seg(seg), .an(an));
     
