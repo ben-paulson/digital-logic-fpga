@@ -18,7 +18,7 @@ module Register(
             contents <= 4'b1111;
         else if (set == 0 && reset == 0)
             contents <= data;
-        SevenSegmentDecoder(.disp(contents), .seg(seg), .an(an));
     end
+    SevenSegmentDecoder display(.disp(contents), .seg(seg), .an(an));
     
 endmodule
