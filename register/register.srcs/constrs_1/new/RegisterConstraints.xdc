@@ -12,6 +12,14 @@ set_property IOSTANDARD LVCMOS33 [get_ports {data[1]}]
 set_property PACKAGE_PIN V17 [get_ports {data[0]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {data[0]}]
 
+# Map SET to switch 6
+set_property PACKAGE_PIN W14 [get_ports {set}]
+set_property IOSTANDARD LVCMOS33 [get_ports {set}]
+
+# Map RESET to switch 5
+set_property PACKAGE_PIN V15 [get_ports {reset}]
+set_property IOSTANDARD LVCMOS33 [get_ports {reset}]
+
 # Map 'clk' input to 100MHz clock
 set_property PACKAGE_PIN W5 [get_ports {clk}]
 set_property IOSTANDARD LVCMOS33 [get_ports {clk}]

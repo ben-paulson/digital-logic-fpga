@@ -5,12 +5,14 @@ module Register(
     input clk,
     input set,
     input reset,
-    output reg [3:0] contents,
     output [7:0] seg,
     output [3:0] an
     );
     
+    logic [3:0] contents;
     initial contents = 4'b0000;
+    
+    // Either set, reset, or latch data on rising edge of clock
     always_ff @(posedge clk) begin
         if (set == 0 && reset == 1)
             contents <= 4'b0000;
@@ -19,6 +21,7 @@ module Register(
         else if (set == 0 && reset == 0)
             contents <= data;
     end
+    // Display the contents of the register on the 7-segment display
     SevenSegmentDecoder display(.disp(contents), .seg(seg), .an(an));
     
 endmodule
