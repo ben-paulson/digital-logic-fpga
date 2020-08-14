@@ -13,6 +13,7 @@ module SequenceDetector_tb();
     always clk = #5 ~clk;
     
     initial begin
+        reset = 0; // Give it an initial value
         code = 5'b00000;
         #17;
         code = 5'b00100;
@@ -35,7 +36,7 @@ module SequenceDetector_tb();
         code = 5'b11110; // Go to state 4, start blinking once in st_4
         #30;
         code = 5'b00000;
-        #10;
+        #11;
         code = 5'b10101;
         #12;
         reset = 1;
