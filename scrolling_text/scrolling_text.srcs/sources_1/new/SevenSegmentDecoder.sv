@@ -17,7 +17,7 @@ module SevenSegmentDecoder # (parameter REFRESH_RATE = 125)(
     * the refresh rate to account for all 4 displays
     */
     logic div_clk;
-    ClockDivider #(REFRESH_RATE * 4) (.clk(clk), .div_clk(div_clk));
+    ClockDivider #(REFRESH_RATE * 4) slow_clk(.clk(clk), .div_clk(div_clk));
     
     // Increase selection every tick of the slow clock
     always @(posedge div_clk)

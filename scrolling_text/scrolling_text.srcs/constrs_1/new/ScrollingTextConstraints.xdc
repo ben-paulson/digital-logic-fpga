@@ -2,6 +2,44 @@
 set_property PACKAGE_PIN W5 [get_ports {clk}]
 set_property IOSTANDARD LVCMOS33 [get_ports {clk}]
 
+set_property PACKAGE_PIN L1 [get_ports {scrolling}]
+set_property IOSTANDARD LVCMOS33 [get_ports {scrolling}]
+
+# Map write input to switch 2
+set_property PACKAGE_PIN W16 [get_ports {write}]
+set_property IOSTANDARD LVCMOS33 [get_ports {write}]
+
+# Map start input to switch 1
+set_property PACKAGE_PIN V16 [get_ports {start}]
+set_property IOSTANDARD LVCMOS33 [get_ports {start}]
+
+# Map reset input to switch 0
+set_property PACKAGE_PIN V17 [get_ports {reset}]
+set_property IOSTANDARD LVCMOS33 [get_ports {reset}]
+
+# Set code input switches to leftmost switches 15-9
+
+set_property PACKAGE_PIN R2 [get_ports {code[6]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {code[6]}]
+
+set_property PACKAGE_PIN T1 [get_ports {code[5]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {code[5]}]
+
+set_property PACKAGE_PIN U1 [get_ports {code[4]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {code[4]}]
+
+set_property PACKAGE_PIN W2 [get_ports {code[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {code[3]}]
+
+set_property PACKAGE_PIN R3 [get_ports {code[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {code[2]}]
+
+set_property PACKAGE_PIN T2 [get_ports {code[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {code[1]}]
+
+set_property PACKAGE_PIN T3 [get_ports {code[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {code[0]}]
+
 # Map "an" output to 7-segment anodes
 
 set_property PACKAGE_PIN W4 [get_ports {an[3]}]
