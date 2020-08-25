@@ -14,26 +14,44 @@ module ScrollingText_tb();
     always clk = #5 ~clk;
     
     initial begin
-        code = 7'b0000010;
-        #13;
-        write = 1;
-        #10;
-        write = 0;
-        #3;
-        code = 7'b0001001;
-        #25;
-        write = 1;
-        #17;
-        write = 0;
-        #17;
-        start = 1;
-        #46;
-//        code = 6'b101111;
-//        #27;
-//        code = 6'b000110;
-//        #36;
-//        code = 6'b101010;
-//        #10;
+        for (int i = 0; i < 10; i++) begin
+            for (int j = 0; j < 3; j++) begin
+                code = 7'b1001000; // H
+                #5;
+                write = 1;
+                #20;
+                write = 0;
+                #2;
+                code = 7'b1000101; // E
+                #20;
+                write = 1;
+                #20;
+                write = 0;
+                #20;
+                code = 7'b1001100; // L
+                #20;
+                write = 1;
+                #20;
+                write = 0;
+                code = 7'b1001100; // L
+                #20;
+                write = 1;
+                #20;
+                code = 7'b1001111; // O
+                write = 0;
+                #20;
+                write = 1;
+                #20;
+                write = 0;
+                #20;
+            end
+            start = 1;
+            #200;
+            reset = 1;
+            start = 0;
+            #20;
+            reset = 0;
+        end
     end
 
 endmodule

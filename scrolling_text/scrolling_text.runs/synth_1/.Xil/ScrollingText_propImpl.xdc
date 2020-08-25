@@ -3,6 +3,8 @@ set_property src_info {type:XDC file:1 line:2 export:INPUT save:INPUT read:READ}
 set_property PACKAGE_PIN W5 [get_ports {clk}]
 set_property src_info {type:XDC file:1 line:5 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN L1 [get_ports {scrolling}]
+set_property src_info {type:XDC file:1 line:6 export:INPUT save:INPUT read:READ} [current_design]
+set_property IOSTANDARD LVCMOS33 [get_ports {scrolling}]
 set_property src_info {type:XDC file:1 line:9 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN W16 [get_ports {write}]
 set_property src_info {type:XDC file:1 line:13 export:INPUT save:INPUT read:READ} [current_design]

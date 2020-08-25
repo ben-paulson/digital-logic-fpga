@@ -31,22 +31,32 @@ module SevenSegmentDecoder # (parameter REFRESH_RATE = 125)(
         input [6:0] value;
         begin
             case (value)
-                0: decode = 8'b00000011;
-                1: decode = 8'b10011111;
-                2: decode = 8'b00100101;
-                3: decode = 8'b00001101;
-                4: decode = 8'b10011001;
-                5: decode = 8'b01001001;
-                6: decode = 8'b01000001;
-                7: decode = 8'b00011111;
-                8: decode = 8'b00000001;
-                9: decode = 8'b00011001;
-                10: decode = 8'b00010001;
-                11: decode = 8'b11000001;
-                12: decode = 8'b01100011;
-                13: decode = 8'b10000101;
-                14: decode = 8'b01100001;
-                15: decode = 8'b01110001;
+            65: decode = 8'b00010001;
+                66: decode = 8'b11000001;
+                67: decode = 8'b01100011;
+                68: decode = 8'b10000101;
+                69: decode = 8'b01100001;
+                70: decode = 8'b01110001;
+                71: decode = 8'b00001001;
+                72: decode = 8'b11010001;
+                73: decode = 8'b10011111;
+                74: decode = 8'b10000111;
+                75: decode = 8'b10010001;
+                76: decode = 8'b11100011;
+                77: decode = 8'b01101101;
+                78: decode = 8'b11010101;
+                79: decode = 8'b00000011;
+                80: decode = 8'b00110001;
+                81: decode = 8'b00000010;
+                82: decode = 8'b01110011;
+                83: decode = 8'b01001001;
+                84: decode = 8'b00011111;
+                85: decode = 8'b10000011;
+                86: decode = 8'b00010011;
+                87: decode = 8'b00001101;
+                88: decode = 8'b10010001;
+                89: decode = 8'b10001001;
+                90: decode = 8'b00100101;
                 default: decode = 8'b11111111;
             endcase
         end
