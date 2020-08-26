@@ -14,7 +14,12 @@ module ScrollingText_tb();
     always clk = #5 ~clk;
     
     initial begin
+        // Do the whole cycle 10 times, to test reset, scroll, and wait
         for (int i = 0; i < 10; i++) begin
+            /*
+            * Write 'hello' 3 times to test overflow of characters
+            * Since the max is 10, the first hello will be cut off
+            */
             for (int j = 0; j < 3; j++) begin
                 code = 7'b1001000; // H
                 #5;

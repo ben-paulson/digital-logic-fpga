@@ -2,9 +2,6 @@
 set_property PACKAGE_PIN W5 [get_ports {clk}]
 set_property IOSTANDARD LVCMOS33 [get_ports {clk}]
 
-set_property PACKAGE_PIN L1 [get_ports {scrolling}]
-set_property IOSTANDARD LVCMOS33 [get_ports {scrolling}]
-
 # Map write input to switch 2
 set_property PACKAGE_PIN W16 [get_ports {write}]
 set_property IOSTANDARD LVCMOS33 [get_ports {write}]
