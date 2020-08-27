@@ -14,6 +14,26 @@ set_property IOSTANDARD LVCMOS33 [get_ports {start}]
 set_property PACKAGE_PIN V17 [get_ports {reset}]
 set_property IOSTANDARD LVCMOS33 [get_ports {reset}]
 
+# Map speed input to switches 6-4
+
+set_property PACKAGE_PIN V2 [get_ports {speed[5]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {speed[5]}]
+
+set_property PACKAGE_PIN W13 [get_ports {speed[4]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {speed[4]}]
+
+set_property PACKAGE_PIN W14 [get_ports {speed[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {speed[3]}]
+
+set_property PACKAGE_PIN V15 [get_ports {speed[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {speed[2]}]
+
+set_property PACKAGE_PIN W15 [get_ports {speed[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {speed[1]}]
+
+set_property PACKAGE_PIN W17 [get_ports {speed[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {speed[0]}]
+
 # Set code input switches to leftmost switches 15-9
 
 set_property PACKAGE_PIN R2 [get_ports {code[6]}]
