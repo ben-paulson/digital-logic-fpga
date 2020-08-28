@@ -26,3 +26,7 @@
 #########
 #Include all pdfs as problem descriptions & other diagrams
 !*.pdf
+####
+Ignore final
+####
+final/final.pdf
